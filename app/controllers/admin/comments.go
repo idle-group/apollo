@@ -64,7 +64,7 @@ func ApproveStu(c *gin.Context) {
 	c.ShouldBind(&form)
 
 	userNew := model.User{
-		Priority: form.Priority,
+		Priority: 1,
 		StuVaild: true,
 	}
 	userNew.ID = user.ID
