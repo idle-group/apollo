@@ -35,7 +35,7 @@ func CommentsList(c *gin.Context) {
 func VaildStu(c *gin.Context) {
 	c.Set(PageTitle, "用户实名审核")
 	page := service.QueryPage(c)
-	users, allPage, err := service.UsersQueryWithContext(c)
+	users, allPage, err := service.UsersQueryWithContext(c, "stu_vaild=0")
 
 	if err != nil {
 		sugar.Errorf("HomeIndex-获取 Shares 出错:%s", err.Error())

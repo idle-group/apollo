@@ -20,6 +20,6 @@ func adminRouterInit() {
 		i.UserPriorityMiddleware(model.UserPrioritySuper), admin.CommentsList)
 	get("admin_valid_stu", "/admin/account/vaild_stu", i.UserPriorityMiddleware(model.UserPrioritySuper), admin.VaildStu)
 
-	post("admin_valid_stu_post", "/admin/account/vaild_stu/approve",
+	get("admin_valid_stu_post", "/admin/account/vaild_stu/approve",
 		i.UserPriorityMiddleware(model.UserPrioritySuper), admin.ApproveStu)
 }
