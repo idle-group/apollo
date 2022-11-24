@@ -18,5 +18,8 @@ func adminRouterInit() {
 
 	get("admin_comments_list", "/admin/comments/list",
 		i.UserPriorityMiddleware(model.UserPrioritySuper), admin.CommentsList)
-	get("admin_valid_stu", "/admin/account/vaild_stu",i.UserPriorityMiddleware(model.UserPrioritySuper),admin.VaildStu)
+	get("admin_valid_stu", "/admin/account/vaild_stu", i.UserPriorityMiddleware(model.UserPrioritySuper), admin.VaildStu)
+
+	post("admin_valid_stu_post", "/admin/account/vaild_stu/approve",
+		i.UserPriorityMiddleware(model.UserPrioritySuper), admin.ApproveStu)
 }
