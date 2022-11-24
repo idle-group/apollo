@@ -1,7 +1,12 @@
 package admin
 
 import (
+	"encoding/base64"
+	"fmt"
+	"html/template"
+	"io/ioutil"
 	"net/http"
+	"os"
 
 	"github.com/chalvern/apollo/app/model"
 	"github.com/chalvern/apollo/app/service"
@@ -36,7 +41,6 @@ func VaildStu(c *gin.Context) {
 	c.Set(PageTitle, "用户实名审核")
 	page := service.QueryPage(c)
 	users, allPage, err := service.UsersQueryWithContext(c, "stu_vaild=0")
-
 	if err != nil {
 		sugar.Errorf("HomeIndex-获取 Shares 出错:%s", err.Error())
 		html(c, http.StatusOK, "notify/error.tpl", gin.H{
@@ -44,6 +48,31 @@ func VaildStu(c *gin.Context) {
 		})
 		return
 	}
+
+	for i := 0; i < len(users); i++ {
+		photopath := users[i].StuPhoto
+		file, err := os.Open(photopath)
+		if err != nil {
+			sugar.Errorf("获取 用户图片 出错:%s", err.Error())
+			html(c, http.StatusOK, "notify/error.tpl", gin.H{
+				"Timeout": 3,
+			})
+			return
+		}
+		defer file.Close()
+		imgByte, _ := ioutil.ReadAll(file)
+		mimeType := http.DetectContentType(imgByte)
+		switch mimeType {
+		case "image/jpeg":
+			fmt.Println("jpeg")
+			users[i].StuPhotoBase64 = template.URL("data:image/jpeg;base64," + base64.StdEncoding.EncodeToString(imgByte))
+		case "image/png":
+			fmt.Println("png")
+			users[i].StuPhotoBase64 = template.URL("data:image/png;base64," + base64.StdEncoding.EncodeToString(imgByte))
+			fmt.Println(users[i].StuPhoto)
+		}
+	}
+	
 
 	html(c, http.StatusOK, "admin/users/vaild_stu.tpl", gin.H{
 		"Users":       users,

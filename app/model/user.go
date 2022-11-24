@@ -2,6 +2,7 @@ package model
 
 import (
 	"fmt"
+	"html/template"
 	"time"
 )
 
@@ -35,9 +36,11 @@ type User struct {
 	StuPhoto         string     `gorm:"type:varchar(256)" json:"std_photo" ` // 学生用来验证的图片
 	StuVaild         bool       `gorm:"" json:""`
 
+	StuPhotoBase64 template.URL
 	// Priority 用户优先级，暂时使用这个字段给用户赋权
 	// 比如 普通用户给 2^0，admin 给 2^10
 	Priority int `gorm:"default:0" json:"priority"` // 权限优先级
+
 }
 
 // QueryBatch 检索一组
