@@ -12,7 +12,7 @@ func AccountValidEmail(to string, nickname string, token string) error {
 	if err != nil {
 		return err
 	}
-	return sendMail([]string{to}, "来自·见周边·的验证信息", body)
+	return sendMail([]string{to}, "来自·校园实名制的SNS系统·的验证信息", body)
 }
 
 // accountValidEmailBody 生成邮件体
@@ -21,7 +21,7 @@ func accountValidEmailBody(mail, nickname, token string) (string, error) {
 		Body: hermes.Body{
 			Name: nickname,
 			Intros: []string{
-				"您的邮箱正在用来注册 见周边 的账户。",
+				"您的邮箱正在用来注册 校园实名制的SNS系统 的账户。",
 			},
 			Actions: []hermes.Action{
 				{
