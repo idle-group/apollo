@@ -15,10 +15,11 @@
 </div>
 
 {{template "tags/_taglist.tpl" . }}
-
+<!--
 <div class="body-sidebar">
     <div style="text-align: center;">
         <img src="/static/img/qrcode_jzb.jpg" style="width: 100%;"></img>
-        <div>公众号（见周边）</div>
+        <div>校园实名制的SNS系统</div>
     </div>
 </div>
+-->X

@@ -1,7 +1,7 @@
 <div>
-<h4>相关链接</h4>
+<h4>开发者</h4>
 <ul>
-    <li><a href="https://jingwei.link" target="_blank">敬维的博客</a></li>
-    <li><a href="https://github.com/chalvern/apollo">本社区源码</a></li>
+    <li><a href="https://github.com/Joker-5" target="_blank">张昊</a></li>
+    <li><a href="https://github.com/freechar">薛胜祖</a></li>
 </ul>
 </div>

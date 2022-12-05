@@ -11,7 +11,7 @@ core:
   env: develop
   site:
     host: localhost:2020
-    name: 见周边
+    name: 校园实名制的SNS系统
 
 
 # pubsub 异步任务配置，主要使用的是 github.com/chalvern/gochan 库
