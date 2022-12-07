@@ -26,7 +26,7 @@ func (c *Comment) QueryBatch(offset, pageSize int, userPreload bool, order strin
 	}
 	if userPreload {
 		db = db.Preload("User", func(db *gorm.DB) *gorm.DB {
-			return db.Select("id,nickname")
+			return db.Select("id,nickname,stu_name")
 		})
 	}
 	if order == "" {

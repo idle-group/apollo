@@ -131,7 +131,7 @@ func SignUpPost(c *gin.Context) {
 	// }
 
 	htmlOfOk(c, "notify/success.tpl", gin.H{
-		"Info":         fmt.Errorf("注册成功 😆😆😆，(等待管理员验证)验证邮件已发送至 %s", form.Email),
+		"Info":         fmt.Errorf("注册成功 😆😆😆，(等待管理员验证)"),
 		"Timeout":      3,
 		"RedirectURL":  "/signin",
 		"RedirectName": "登陆页",

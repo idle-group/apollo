@@ -2,13 +2,13 @@
 	<div class="media-left">
 		<div class="cell-a-avatar">
 			<a href="{{link `user_detail` `uid` .User.ID}}" style="color:white;">
-				<div class="avatar">{{.User.Nickname | firstChar}}</div>
+				<div class="avatar">{{.User.StuName | firstChar}}</div>
 			</a>
 		</div>
 	</div>
 	<div class="media-body">
 		<div class="title">
-			<a href="{{link `user_detail` `uid` .User.ID}}">{{.User.Nickname}}</a>
+			<a href="{{link `user_detail` `uid` .User.ID}}">{{.User.StuName}}</a>
 		</div>
 		<div class="reviews">
 			{{str2html (.Reply|markdown)}}
