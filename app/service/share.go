@@ -56,6 +56,12 @@ func ShareCreate(share *model.Share) error {
 	return share.Create()
 }
 
+
+func ShareDeleteByID(id interface{}) error {
+	return shareModel.DeleteByID(id)
+}
+
+
 // ShareUpdates 更新分享
 // 传入的 share 的 UserID 必须带进来用以判定权限
 func ShareUpdates(share *model.Share, user *model.User) error {

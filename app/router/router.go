@@ -54,7 +54,7 @@ func routerInit() {
 	post("share_new_post", "/share/new", i.UserMustExistMiddleware(), controllers.ShareNewPost)
 	get("share_edit_get", "/share/edit", i.UserMustExistMiddleware(), controllers.ShareEditGet)
 	post("share_edit_post", "/share/edit", i.UserMustExistMiddleware(), controllers.ShareEditPost)
-
+	get("share_delete_get","/share/delete",i.UserMustExistMiddleware(),controllers.ShareDeleteGet)
 	// share comments
 	post("comment_new_post", "/share/comment/new", i.UserMustExistMiddleware(), controllers.CommentNewPost)
 

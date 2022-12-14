@@ -67,6 +67,11 @@ func (s *Share) Update() error {
 	return mydb.Model(s).Updates(s).Error
 }
 
+// Delete 删除
+func (s *Share) DeleteByID(id interface{}) error {
+   return mydb.Delete(&Share{},id).Error
+}
+
 // Click 点击量
 func (s *Share) Click(shareID uint) error {
 	err := mydb.Exec("UPDATE shares SET click_count = click_count + 1 WHERE id = ?", shareID).Error

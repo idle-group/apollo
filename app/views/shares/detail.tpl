@@ -21,6 +21,9 @@
 				{{if account_has_share_edit_authority .Share .Account}}
 				 · <a href="{{link `share_edit_get` `id` .Share.ID}}">编辑</a>
 				{{end}}
+				{{if account_has_share_edit_authority .Share .Account}}
+					· <a href="{{link `share_delete_get` `id` .Share.ID}}">刪除</a>
+				   {{end}}
 			</div>
 			<div class="divide mar-top-5"></div>
 			<div class="reviews">

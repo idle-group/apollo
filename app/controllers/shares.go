@@ -155,6 +155,44 @@ func ShareEditGet(c *gin.Context) {
 	})
 }
 
+// ShareDeletePost 删除分享
+func ShareDeleteGet(c *gin.Context) {
+	c.Set(PageTitle, "删除分享")
+	share, err := service.ShareQueryByID(c.Query("id"))
+	if err != nil || share.ID == 0 {
+		sugar.Warnf("ShareDetailGet 未检索到对应的分享，id=%v", c.Query("id"))
+		html(c, http.StatusOK, "notify/error.tpl", gin.H{
+			"Info": "对应条目找不到了，请看看别的吧",
+		})
+		return
+	}
+	user := c.MustGet("user").(*model.User)
+	// 只有管理员和本人才可以删除
+	if user.ID != share.UserID && !helper.AccountManagerHelper(user) {
+		sugar.Warnf("ShareEditPost 用户 %d 没有刪除 id=%v 的权限", user.ID, c.Query("id"))
+		html(c, http.StatusOK, "notify/error.tpl", gin.H{
+			"Info": "没有权限修改此分享内容",
+		})
+		return
+	}
+
+	err = service.ShareDeleteByID(c.Query("id"))
+	if err != nil {
+		sugar.Warnf("ShareDeletePost 删除指定分享失败，id=%v", c.Query("id"))
+		html(c, http.StatusOK, "notify/error.tpl", gin.H{
+			"Info": "删除这个分享失败了，重新试试吧",
+		})
+		return
+	}
+
+	htmlOfOk(c, "notify/success.tpl", gin.H{
+		"Info":         "发布成功!",
+		"Timeout":      3,
+		"RedirectURL":  "/",
+		"RedirectName": "主页",
+	})
+}
+
 // ShareEditPost 更新分享
 func ShareEditPost(c *gin.Context) {
 	c.Set(PageTitle, "更新分享")
